@@ -1,0 +1,12 @@
+main: cf.melncat.furcation.internal.Furcation
+name: Furcation
+description: Core plugin for some plugins.
+version: 0.0.1
+author: MelnCat <https://github.com/MelnCat>
+website: https://github.com/MelnCat/Est
+depend:
+  - ProtocolLib
+load: STARTUP
+api-version: 1.18
+provides:
+  - moral support
