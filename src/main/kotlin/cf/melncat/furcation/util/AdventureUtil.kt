@@ -32,3 +32,5 @@ fun String.mm(vararg placeholders: String, parsed: Boolean = false, instance: Mi
 		if (parsed) Placeholder.parsed(i.toString(), it)
 		else Placeholder.unparsed(i.toString(), it)
 	}))
+
+object A {}

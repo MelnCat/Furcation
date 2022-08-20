@@ -4,6 +4,9 @@ package cf.melncat.furcation.plugin
 
 import cf.melncat.furcation.plugin.loaders.FListener
 import cf.melncat.furcation.plugin.loaders.RegisterListener
+import net.minecraft.world.entity.Entity
+import net.minecraft.world.entity.vehicle.Boat
+
 import org.bukkit.Bukkit
 import org.bukkit.event.Listener
 import org.bukkit.plugin.java.JavaPlugin
@@ -14,8 +17,8 @@ import org.reflections.util.ConfigurationBuilder
 import org.reflections.util.FilterBuilder
 import kotlin.reflect.full.isSubclassOf
 
-abstract class FPlugin(val rootPackage: String) : JavaPlugin() {
-	protected val reflections = Reflections(
+public abstract class FPlugin(public val rootPackage: String) : JavaPlugin() {
+	protected val reflections: Reflections = Reflections(
 		ConfigurationBuilder()
 			.setClassLoaders(arrayOf(javaClass.classLoader))
 			.forPackage(rootPackage)
