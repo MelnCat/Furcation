@@ -1,6 +1,6 @@
-package cf.melncat.furcation.internal
+package dev.melncat.furcation.internal
 
-import cf.melncat.furcation.util.mm
+import dev.melncat.furcation.util.mm
 import cloud.commandframework.ArgumentDescription
 import cloud.commandframework.bukkit.CloudBukkitCapabilities.ASYNCHRONOUS_COMPLETION
 import cloud.commandframework.execution.CommandExecutionCoordinator

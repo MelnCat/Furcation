@@ -1,4 +1,4 @@
-package cf.melncat.furcation.util
+package dev.melncat.furcation.util
 
 import org.bukkit.Bukkit
 import org.bukkit.Server

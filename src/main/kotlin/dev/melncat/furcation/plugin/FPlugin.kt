@@ -1,13 +1,13 @@
 @file:Suppress("MemberVisibilityCanBePrivate")
 
-package cf.melncat.furcation.plugin
+package dev.melncat.furcation.plugin
 
-import cf.melncat.furcation.plugin.loaders.FCommand
-import cf.melncat.furcation.plugin.loaders.FListener
-import cf.melncat.furcation.plugin.loaders.RegisterCommand
-import cf.melncat.furcation.plugin.loaders.RegisterListener
-import cf.melncat.furcation.util.NTC
-import cf.melncat.furcation.util.component
+import dev.melncat.furcation.plugin.loaders.FCommand
+import dev.melncat.furcation.plugin.loaders.FListener
+import dev.melncat.furcation.plugin.loaders.RegisterCommand
+import dev.melncat.furcation.plugin.loaders.RegisterListener
+import dev.melncat.furcation.util.NTC
+import dev.melncat.furcation.util.component
 import cloud.commandframework.bukkit.CloudBukkitCapabilities
 import cloud.commandframework.exceptions.InvalidCommandSenderException
 import cloud.commandframework.execution.CommandExecutionCoordinator

@@ -1,4 +1,4 @@
-package cf.melncat.furcation.plugin.loaders
+package dev.melncat.furcation.plugin.loaders
 
 import cloud.commandframework.paper.PaperCommandManager
 import org.bukkit.command.CommandSender

@@ -1,4 +1,4 @@
-package cf.melncat.furcation.util
+package dev.melncat.furcation.util
 
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.ComponentLike

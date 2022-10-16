@@ -1,4 +1,4 @@
-package cf.melncat.furcation.plugin.loaders
+package dev.melncat.furcation.plugin.loaders
 
 import org.bukkit.event.Listener
 

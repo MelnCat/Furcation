@@ -10,7 +10,7 @@ plugins {
 	id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
-group = "cf.melncat.furcation"
+group = "dev.melncat.furcation"
 version = "0.0.2"
 description = "Core plugin for some plugins"
 
@@ -35,9 +35,6 @@ dependencies {
 
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4")
-
-	compileOnly("com.github.retrooper.packetevents:spigot:2.0.0-SNAPSHOT")
-
 }
 
 java {
@@ -69,15 +66,23 @@ tasks {
 		}
 	}
 	shadowJar {
-		fun reloc(pkg: String) = relocate(pkg, "cf.melncat.furcation.shaded.$pkg")
+		fun reloc(pkg: String) = relocate(pkg, "dev.melncat.furcation.shaded.$pkg")
 		listOf(
 			"org.reflections",
 			"org.tukaani.xz",
 			"cloud.commandframework",
 			"io.leangen.geantyref",
 			"kotlinx",
-			"org.jetbrains"
+			"org.jetbrains",
+			"javassist"
 		).forEach(::reloc)
+
+		exclude(
+			"com/google/gson/**",
+			"org/slf4j/**",
+			"org/intellij/lang/annotations/**",
+			"javax/annotation/**"
+		)
 	}
 }
 val ver = version.toString()
