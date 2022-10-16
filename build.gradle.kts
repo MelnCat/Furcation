@@ -1,6 +1,3 @@
-import io.papermc.paperweight.tasks.generateMappings
-import io.papermc.paperweight.util.constants.PARAM_MAPPINGS_CONFIG
-import io.papermc.paperweight.util.convertToPath
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -8,34 +5,38 @@ plugins {
 	`maven-publish`
 	kotlin("jvm") version "1.7.20-Beta"
 	kotlin("plugin.serialization") version "1.6.21"
-	id("io.papermc.paperweight.userdev") version "1.3.7"
+	id("io.papermc.paperweight.userdev") version "1.3.8"
 	id("xyz.jpenilla.run-paper") version "1.0.6"
 	id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "cf.melncat.furcation"
-version = "0.0.1"
+version = "0.0.2"
 description = "Core plugin for some plugins"
 
 repositories {
 	mavenCentral()
 	mavenLocal()
-	maven("https://repo.papermc.io/repository/maven-public/")
-	maven("https://repo.dmulloy2.net/repository/public/")
+	maven("https://repo.purpurmc.org/snapshots")
+	maven("https://repo.codemc.io/repository/maven-snapshots/")
 }
 
 dependencies {
 	implementation(kotlin("stdlib"))
 	implementation(kotlin("reflect"))
-	paperDevBundle("1.19.2-R0.1-SNAPSHOT")
-	compileOnly("io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT")
-	implementation("cloud.commandframework:cloud-paper:1.7.0")
-	implementation("cloud.commandframework:cloud-kotlin-extensions:1.7.0")
+	paperweightDevBundle("org.purpurmc.purpur", "1.19.2-R0.1-SNAPSHOT")
+
+	implementation("cloud.commandframework:cloud-paper:1.7.1")
+	implementation("cloud.commandframework:cloud-kotlin-extensions:1.7.1")
+	implementation("cloud.commandframework:cloud-kotlin-coroutines:1.7.1")
+
 	implementation("org.reflections", "reflections", "0.10.2")
 	implementation("org.tukaani", "xz", "1.9")
-	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
+
+	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4")
-	compileOnly("com.comphenix.protocol", "ProtocolLib", "4.8.0")
+
+	compileOnly("com.github.retrooper.packetevents:spigot:2.0.0-SNAPSHOT")
 
 }
 
@@ -70,7 +71,6 @@ tasks {
 	shadowJar {
 		fun reloc(pkg: String) = relocate(pkg, "cf.melncat.furcation.shaded.$pkg")
 		listOf(
-			"kotlin",
 			"org.reflections",
 			"org.tukaani.xz",
 			"cloud.commandframework",

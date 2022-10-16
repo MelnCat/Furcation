@@ -1,6 +1,7 @@
 package cf.melncat.furcation.util
 
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.ComponentLike
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.format.TextDecoration
@@ -8,29 +9,30 @@ import net.kyori.adventure.text.minimessage.MiniMessage
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver
 
-typealias TC = TextColor
-typealias NTC = NamedTextColor
-typealias TD = TextDecoration
+public typealias TC = TextColor
+public typealias NTC = NamedTextColor
+public typealias TD = TextDecoration
 
 private val default = MiniMessage.miniMessage()
 
-fun String.component(color: TC, vararg decorations: TD)
+private fun createTemplate(key: String, value: Any, parsed: Boolean)
+	= if (value is ComponentLike) Placeholder.component(key, value)
+	else if (parsed) Placeholder.parsed(key, value.toString())
+	else Placeholder.unparsed(key, value.toString())
+
+public fun String.component(color: TC, vararg decorations: TD): Component
 	= Component.text(this, color, *decorations)
 
-operator fun Component.plus(other: Component) = append(other)
+public operator fun Component.plus(other: Component): Component = append(other)
 
-fun String.mm(instance: MiniMessage = default) = instance.deserialize(this)
+public fun String.mm(instance: MiniMessage = default): Component = instance.deserialize(this)
 
-fun String.mm(vararg placeholders: Pair<String, String>, parsed: Boolean = false, instance: MiniMessage = default) =
-	instance.deserialize(this, TagResolver.resolver(placeholders.map {
-		if (parsed) Placeholder.parsed(it.first, it.second)
-		else Placeholder.unparsed(it.first, it.second)
+public fun String.mm(vararg placeholders: Pair<String, Any>, parsed: Boolean = false, instance: MiniMessage = default): Component =
+	instance.deserialize(this, TagResolver.resolver(placeholders.map { (key, value) ->
+		createTemplate(key, value, parsed)
 	}))
 
-fun String.mm(vararg placeholders: String, parsed: Boolean = false, instance: MiniMessage = default) =
+public fun String.mm(vararg placeholders: Any, parsed: Boolean = false, instance: MiniMessage = default): Component =
 	instance.deserialize(this, TagResolver.resolver(placeholders.mapIndexed { i, it ->
-		if (parsed) Placeholder.parsed(i.toString(), it)
-		else Placeholder.unparsed(i.toString(), it)
+		createTemplate(i.toString(), it, parsed)
 	}))
-
-object A {}
