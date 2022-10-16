@@ -2,8 +2,8 @@ package cf.melncat.furcation.plugin.loaders
 
 import org.bukkit.event.Listener
 
-interface FListener : Listener {
-	fun shouldRegister() = true
+public interface FListener : Listener {
+	public fun shouldRegister(): Boolean = true
 }
 
-annotation class RegisterListener
+public annotation class RegisterListener
